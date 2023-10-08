@@ -5,43 +5,68 @@
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
-        pass
-
-    return []
+        values = input("Entrez 10 valeurs: ")
+    return sorted(values)
 
 
 def anagrams(words: list = None) -> bool:
     if words is None:
         # TODO: demander les mots ici
-        pass
-
-    return False
-
+        words = input("Entrez les mots: ")
+    return sorted(list(words[0])) == sorted(list(words[1])) # sorted(list) sort la liste et renvoie le résultat
+                                                            #liste.sort() sort la liste mais ne renvoie aucun résultat
 
 def contains_doubles(items: list) -> bool:
-    return False
+    ensemble = set(items)
+    return len(items) != len(ensemble)
 
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+    grades = dict()
+    for key, values in student_grades.items():
+        moyenne_values = int(sum(values) / len(values))
+        grades[key] = moyenne_values
+
+    for key, value in grades.items():
+        if value == max(list(grades.values())):
+            best_student = {key : value}
+    
+    return best_student
+    
+    
+
+         
+    
 
 
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
+    used_char = dict()
+    for c in sentence:
+        used_char[c] = sentence.count(c) # la clé a une valeur unique dans un dictionnaire
 
-    return {}
+    counting = []
+    for key, value in used_char.items():
+        if value > 5:
+            counting.append(key)
+    
+    counting.sort(reverse=True)
+    return counting
 
 
 def get_recipes():
     # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
-    pass
+    nom = input("Veuillez entrer le nom de votre recette: ")
+    ingredients = input("Veuillez entrer les ingrédients: ")
+    return {nom : ingredients}
 
 
 def print_recipe(ingredients) -> None:
     # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
-    pass
+    if ingredients in recette.values():
+        print(ingredients)
 
 
 def main() -> None:
@@ -69,4 +94,4 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    main()
+    print(frequence("J'adore mon baccalaureat en genie informatique/logiciel"))
